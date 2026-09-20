@@ -114,12 +114,51 @@
       text-transform:uppercase;
     }
     footer{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
       margin-top:34px;
       padding-top:18px;
       border-top:1px solid var(--border);
       color:#666;
       font-size:12px;
       text-align:center;
+    }
+    footer button{
+      border:0;
+      background:none;
+      color:inherit;
+      font:inherit;
+      padding:4px;
+      cursor:pointer;
+    }
+    footer button:hover{color:var(--text)}
+    dialog{
+      width:min(520px,calc(100% - 28px));
+      max-height:80dvh;
+      overflow:auto;
+      background:var(--surface);
+      color:var(--text);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:24px;
+      box-shadow:0 20px 60px rgba(0,0,0,.45);
+    }
+    dialog::backdrop{background:rgba(0,0,0,.72)}
+    dialog h2{margin:0 0 16px;font-size:20px}
+    dialog h3{margin:18px 0 6px;font-size:14px}
+    dialog p{margin:0 0 10px;color:var(--muted);font-size:13px;line-height:1.6}
+    .dialog-close{
+      float:right;
+      width:34px;
+      height:34px;
+      border:0;
+      border-radius:50%;
+      background:var(--surface-hover);
+      color:var(--text);
+      font-size:20px;
+      cursor:pointer;
     }
     @media(max-width:560px){
       .page{padding-left:14px;padding-right:14px}
@@ -173,8 +212,42 @@
       </a>
     </section>
 
-    <footer>BENNESSism</footer>
+    <footer>
+      <span>BENNESSism</span>
+      <span>·</span>
+      <button type="button" onclick="document.getElementById('privacyDialog').showModal()">Privacy</button>
+      <span>·</span>
+      <button type="button" onclick="document.getElementById('termsDialog').showModal()">Terms</button>
+    </footer>
   </main>
+
+  <dialog id="privacyDialog">
+    <button class="dialog-close" type="button" onclick="this.closest('dialog').close()" aria-label="Close">×</button>
+    <h2>Privacy Policy</h2>
+    <p>BENNESSism publishes independent digital projects, music experiences and related media.</p>
+    <h3>Information</h3>
+    <p>This Home page does not intentionally collect personal information. Individual projects may use third-party services or online features when required for their operation.</p>
+    <h3>Browser and local data</h3>
+    <p>Some projects may use browser storage, local files or device features. Information handled locally remains on your device unless a project clearly uses an online service or you choose to share it.</p>
+    <h3>Third-party services</h3>
+    <p>Some projects may use external services such as YouTube, GitHub, Firebase, audio hosting or authentication providers. Those services have their own privacy practices.</p>
+    <h3>Public content</h3>
+    <p>Music, programmes, links and other public material shown by BENNESSism projects may be loaded from external platforms or repositories.</p>
+  </dialog>
+
+  <dialog id="termsDialog">
+    <button class="dialog-close" type="button" onclick="this.closest('dialog').close()" aria-label="Close">×</button>
+    <h2>Terms of Use</h2>
+    <p>BENNESSism projects are provided for general personal use, listening, viewing and experimentation.</p>
+    <h3>Use of the projects</h3>
+    <p>You are responsible for how you use the projects and for keeping appropriate copies of any information or files that matter to you.</p>
+    <h3>Availability</h3>
+    <p>Projects, channels, music, features and content may be changed, updated, moved or discontinued at any time. Continuous availability is not guaranteed.</p>
+    <h3>No warranty</h3>
+    <p>The projects are provided as-is without guarantees that they will always be error-free, uninterrupted or suitable for a particular purpose.</p>
+    <h3>External services and links</h3>
+    <p>External websites, media, services and links are subject to their own terms, policies and availability.</p>
+  </dialog>
 
   <script>
     if ('serviceWorker' in navigator) {
